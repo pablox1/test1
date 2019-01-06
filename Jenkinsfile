@@ -1,16 +1,13 @@
 pipeline {
     agent any
-		def username = 'Jenkins'
-		echo 'Hello Mr. ${username}'
-		echo "I said, Hello Mr. ${username}"
-
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    }
+    
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-
-
-
+              echo "${params.Greeting} World!"
             }
         }
         stage('Test') {
